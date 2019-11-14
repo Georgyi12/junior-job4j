@@ -1,0 +1,32 @@
+public class IteratorArray implements Iterator {
+    private final int[][] values;
+    int i, j;
+
+
+    public IteratorArray(int[][] values) {
+        this.values = values;
+    }
+
+    public boolean hasNext() {
+        for(int i = this.i; i< values.length; i++){
+            for(int j = this.j; j< values[i].length; j++){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Object next() {
+        if (!hasNext()) throw new NoSuchElementException ( );
+        int t = values[i][j];
+        j++;
+        for (int i = this.i; i < values.length; i++) {
+            for (int j = (i == this.i ? this.j : 0); j < values[i].length; j++) {
+                this.i = i;
+                this.j = j;
+                return t;
+            }
+        }
+
+            return t;
+    }
